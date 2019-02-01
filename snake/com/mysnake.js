@@ -1,6 +1,6 @@
 // window 是全集对象
 //自调用函数---小蛇
-(function(){
+// (function(){
     //构造函数，创建小蛇
     var scroe=0;  //统计分数
     var element=[];//创建数组，存放小蛇
@@ -55,7 +55,7 @@
         }
     }
     window.Snake=Snake;
-}());
+// }());
 
 //自调用函数---游戏
 (function () {

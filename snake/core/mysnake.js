@@ -1,17 +1,20 @@
-function Medusa(){}
 var element = [];
-Medusa.prototype.create = function(width,height,direction){
+var score = 0;  //统计分数
+
+function Medusa(width,height,direction){
     this.width = width || 20;
     this.height = height || 20;
     this.direction = direction || "right";
     this.body = [
-        {x:3, y:2, color:"yellow"}, //head
+        {x:4, y:2, color:"yellow"}, //head
+        {x:3, y:2, color:"white"}, //head
         {x:2, y:2, color:"white"},
         {x:1, y:2, color:"white"} //tail
     ]
 }
+
 Medusa.prototype.init = function(map){
-    this.remove();
+    // this.remove();
     for(var i = 0; i < this.body.length;i++){
         var obj = this.body[i];
         var div = document.createElement("div");
@@ -48,9 +51,8 @@ Medusa.prototype.move = function(){
 }
 window.Medusa = Medusa;
 
-function Game() {}
-Game.prototype.create = function(map){
-    this.snake = (new Medusa()).create();
+function Game(map) {
+    this.snake = new Medusa();
     this.map = map;
     that = this;
 }
@@ -91,8 +93,7 @@ Game.prototype.bindkey = function(){
         }
     }.bind(that),false);
 };
-
 window.Game = Game;
 
-var game = (new Game).create(document.querySelector(".map"));
+var game = new Game(document.querySelector(".map"));
 game.init();

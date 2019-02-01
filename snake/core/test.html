@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-<body>
     <style>
         .map{
             width: 800px;
@@ -15,18 +13,80 @@
             /*子绝父相*/
             margin: 10px auto;
         }
+        .score{
+            width: 100px;
+            height: 50px;
+            background-color: #cccfff;
+            position: absolute;
+            right: -105px;
+            font-size: 20px;
+            line-height: 50px;
+            text-align: center;
+        }
     </style>
+</head>
+<body>
+    <h1>贪吃蛇</h1>
+    <div class="map">
+        <div class="score" id="score"> 0 分</div>
+    </div>
     <script>
-        var div = document.createElement("div");
-        map.appendChild(div);
-        div.style.width = 20 + "px";
-        div.style.height = 20 + "px";
-        div.style.backgroundColor = "white";
-        div.style.position = "absolute";
-        div.style.left = obj.x * 20 + "px";
-        div.style.top = obj.y * 20 + "px";
-        element.push(div);
+        <!-- 在背景下静态添加小蛇 -->
+        var element = [];
+        function Medusa(width,height,direction){
+            this.width = width || 20;
+            this.height = height || 20;
+            this.direction = direction || "right";
+            this.body = [
+                {x:4, y:2, color:"yellow"}, //head
+                {x:3, y:2, color:"white"}, //head
+                {x:2, y:2, color:"white"},
+                {x:1, y:2, color:"white"} //tail
+            ]
+        }
+
+        Medusa.prototype.init = function(map){
+            // this.remove();
+            for(var i = 0; i < this.body.length;i++){
+                var obj = this.body[i];
+                var div = document.createElement("div");
+                map.appendChild(div);
+                div.style.width = this.width+"px";
+                div.style.height = this.height+"px";
+                div.style.backgroundColor = obj.color;
+                div.style.position = "absolute";
+                div.style.left = obj.x * this.width + "px";
+                div.style.top = obj.y * this.height + "px";
+                element.push(div);
+            }
+        }
+        Medusa.prototype.remove = function(){
+            var i = element.length - 1;
+            for(; i>=0; i--){
+                var ele = element[i];
+                ele.parentNode.removeChild(ele);
+                element.splice(i,1);
+            }
+        }
+        Medusa.prototype.move = function(){
+            var i = this.body.length-1;
+            for(; i > 0; i--){
+                this.body[i].x = this.body[i-1].x;
+                this.body[i].y = this.body[i-1].y;
+            }
+            switch (this.direction){
+                case "right": this.body[0].x += 1; break;
+                case "left": this.body[0].x -= 1;break;
+                case "top": this.body[0].y -= 1;break;
+                case "bottom": this.body[0].y += 1;break;
+            }
+        }
+        window.Medusa = Medusa;
+        var snake = new Medusa();
+        var map = document.querySelector(".map")
+        snake.init(map);
+        snake.move(map)
+        snake.init(map);
     </script>
-    <div class="map"></div>
 </body>
 </html>
