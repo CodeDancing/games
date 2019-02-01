@@ -14,7 +14,7 @@ function Medusa(width,height,direction){
 }
 
 Medusa.prototype.init = function(map){
-    // this.remove();
+    this.remove();
     for(var i = 0; i < this.body.length;i++){
         var obj = this.body[i];
         var div = document.createElement("div");
