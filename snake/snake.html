@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>贪吃蛇</title>
+    <title>贪食蛇2.0</title>
     <style>
         h1{
             text-align: center;
@@ -11,7 +11,7 @@
             width: 800px;
             height: 600px;
             /*background-color: #ccc;*/
-            background-image:url("bp.jpg");
+            background-image:url("resources/bp.jpg");
             position: relative;
             /*子绝父相*/
             margin: 10px auto;
@@ -30,9 +30,14 @@
 </head>
 <body>
 <h1>贪吃蛇</h1>
+<!--<button onclick="startGame()" >启动游戏</button>-->
+<!--<button onclick="addSnake()" >添加小蛇</button>-->
 <div class="map">
     <div class="score" id="score"> 0分 </div>
 </div>
-    <script type="text/javascript" src="./core/mysnake.js"></script>
+    <script type="text/javascript" src="core/food.js"></script>
+    <script type="text/javascript" src="core/snake.js"></script>
+    <script type="text/javascript" src="core/game.js"></script>
+    <script type="text/javascript" src="core/start.js"></script>
 </body>
 </html>

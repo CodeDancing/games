@@ -61,7 +61,7 @@
             }
         }
         Medusa.prototype.remove = function(){
-            var i = element.length - 1;
+            var i = this.element.length - 1;
             for(; i>=0; i--){
                 var ele = element[i];
                 ele.parentNode.removeChild(ele);
