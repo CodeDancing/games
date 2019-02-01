@@ -8,7 +8,7 @@
             width: 800px;
             height: 600px;
             /*background-color: #ccc;*/
-            background-image:url("core/bp.jpg");
+            /*background-image:url(".//bp.jpg");*/
             position: relative;
             /*子绝父相*/
             margin: 10px auto;
@@ -31,62 +31,22 @@
         <div class="score" id="score"> 0 分</div>
     </div>
     <script>
-        <!-- 在背景下静态添加小蛇 -->
-        var element = [];
-        function Medusa(width,height,direction){
-            this.width = width || 20;
-            this.height = height || 20;
-            this.direction = direction || "right";
-            this.body = [
-                {x:4, y:2, color:"yellow"}, //head
-                {x:3, y:2, color:"white"}, //head
-                {x:2, y:2, color:"white"},
-                {x:1, y:2, color:"white"} //tail
-            ]
+        function saveFile(T,content)
+        {//保存
+            var filename=document.all(T).value;
+            var win=window.open('','','top=10000,left=10000');
+            win.document.write(document.all(content).innerText);
+            win.document.execCommand('SaveAs', '', filename)
+            win.close();
         }
-
-        Medusa.prototype.init = function(map){
-            // this.remove();
-            for(var i = 0; i < this.body.length;i++){
-                var obj = this.body[i];
-                var div = document.createElement("div");
-                map.appendChild(div);
-                div.style.width = this.width+"px";
-                div.style.height = this.height+"px";
-                div.style.backgroundColor = obj.color;
-                div.style.position = "absolute";
-                div.style.left = obj.x * this.width + "px";
-                div.style.top = obj.y * this.height + "px";
-                element.push(div);
-            }
-        }
-        Medusa.prototype.remove = function(){
-            var i = this.element.length - 1;
-            for(; i>=0; i--){
-                var ele = element[i];
-                ele.parentNode.removeChild(ele);
-                element.splice(i,1);
-            }
-        }
-        Medusa.prototype.move = function(){
-            var i = this.body.length-1;
-            for(; i > 0; i--){
-                this.body[i].x = this.body[i-1].x;
-                this.body[i].y = this.body[i-1].y;
-            }
-            switch (this.direction){
-                case "right": this.body[0].x += 1; break;
-                case "left": this.body[0].x -= 1;break;
-                case "top": this.body[0].y -= 1;break;
-                case "bottom": this.body[0].y += 1;break;
-            }
-        }
-        window.Medusa = Medusa;
-        var snake = new Medusa();
-        var map = document.querySelector(".map")
-        snake.init(map);
-        snake.move(map)
-        snake.init(map);
     </script>
+    <form name="saveas" action="" method="post">
+        <input type="text" id="title_1">
+        <br>
+        <textarea id="content_1">
+        </textarea>
+        <br>
+        <input type="button" value="save as txt file" onClick=saveFile('title_1','content_1')>
+    </form>
 </body>
 </html>

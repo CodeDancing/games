@@ -29,9 +29,11 @@
     </style>
 </head>
 <body>
-<h1>贪吃蛇</h1>
-<button onclick="startGame()" >启动游戏</button>
-<!--<button onclick="addSnake()" >添加小蛇</button>-->
+<p><h1>贪吃蛇</h1></p>
+<p><button onclick="startGame()" >启动游戏</button></p>
+    <input id="username">
+    <button type="button" onclick="saveRecord()">Submit</button>
+    <p id="showname"></p>
 <div class="map">
     <div class="score" id="score"> 0分 </div>
 </div>
@@ -39,5 +41,6 @@
     <script type="text/javascript" src="core/snake.js"></script>
     <script type="text/javascript" src="core/game.js"></script>
     <script type="text/javascript" src="core/start.js"></script>
+    <script type="text/javascript" src="server/saveRecord.js"></script>
 </body>
 </html>
