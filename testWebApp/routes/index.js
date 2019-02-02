@@ -10,4 +10,10 @@ router.get('/', function(req, res, next) {
 router.get('/game', function(req, res, next) {
   res.render('game');
 });
+
+/* GET game snake. */
+router.get('/snake', function(req, res, next) {
+  res.render('snake');
+});
+
 module.exports = router;
