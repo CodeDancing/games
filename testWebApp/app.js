@@ -38,7 +38,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
 app.listen(8100,function(){
   console.log("Server Start!");
 });
